@@ -9,19 +9,23 @@ players = (1..number_of_players).to_a.collect { |id| Player.new('Player ' + id.t
 
 game = Game.new
 deck = Deck.new
+house = House.new
 
-#deal initial hands to all players
+deck.deal(house, players)
 
 until game.over?
 
-  turn = Turn.new
-  # deal initial hands
+  puts "House hand is: #{house.shown_card} and [hidden card]"
+  players.each {|player| puts "#{player.name}'s hand is: #{player.view_hand}"}
 
+  turn = Turn.new
   until turn.over?
     players.each do |player|
-      puts "Do you want a card (y/n)?"
-      if get.chomp == "y"
-        #deal a card
+      puts "#{player.name}, do you want a card (y/n)?"
+      if gets.chomp == "y"
+        player.add_card_to_hand(deck.hit)
+        puts "House hand is: #{house.shown_card} and [hidden card]"
+        players.each {|player| puts "#{player.name}'s hand is: #{player.view_hand}"}
       end
     end
   end
