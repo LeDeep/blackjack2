@@ -12,6 +12,15 @@ describe Turn do
     it 'returns false' do
       turn = Turn.new
       turn.over?.should be false
+    end
+  end
+ 
+ context '#hold?' do    
+    it 'returns true when player holds' do 
+      turn = Turn.new
+      player = Player.new("Player1")
+      
+
 
     end
   end
